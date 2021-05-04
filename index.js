@@ -4,8 +4,8 @@ program.version('0.0.1');
 
 program
   .option('-s, --shift <shift>', 'add the shift for Caesar cipher', 0)
-  .option('-i, --input <inputFile>', 'add an input file')
-  .option('-o, --output <outputFile>', 'add the output file')
+  .option('-i, --input <inputFile>', 'add an input file', './input.txt')
+  .option('-o, --output <outputFile>', 'add the output file', './output.txt')
   .option('-a, --action <action>', 'add an action encode/decode');
 
 const options = program.opts();
