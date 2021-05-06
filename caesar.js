@@ -38,7 +38,8 @@ app
         } else {
           console.log(fd);
           const readStream = fs.createReadStream(input, { encoding: 'utf-8', fd });
-          const writeStream = fs.createWriteStream(output);
+          const writeStream = fs.createWriteStream(output, { flags: 'a'});
+          writeStream.write('\n');
           readStream.pipe(writeStream); 
         }         
       })   
