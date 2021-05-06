@@ -1,7 +1,9 @@
 #!/usr/bin/env node
+const encryption = require('./encryption');
 const app = require('commander');
 const fs = require('fs');
 
+console.log(encryption('This is secret. Message about "_" symbol!', 7, 'encode'))
 app
   .version('0.0.1')
   .option('-s --shift <shift>', 'add the shift for Caesar cipher')
@@ -21,7 +23,7 @@ app
       process.stdin.on('readable', () => {
         const chunk = process.stdin.read();
         if (chunk !== null) {
-          process.stdout.write(`data: ${chunk}`);            
+          process.stdout.write(`${chunk}`);            
         }
         process.stdin.resume();
       }); 
