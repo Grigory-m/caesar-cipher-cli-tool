@@ -36,11 +36,15 @@ app
             process.exit(1);
           }
         } else {
-          console.log(fd);
           const readStream = fs.createReadStream(input, { encoding: 'utf-8', fd });
-          const writeStream = fs.createWriteStream(output, { flags: 'a'});
-          writeStream.write('\n');
-          readStream.pipe(writeStream); 
+          readStream.on('readable', () => {
+            const chunk = readStream.read();
+            const writeStream = fs.createWriteStream(output, { flags: 'a'});
+            if (chunk !== null) {
+              writeStream.write(`${chunk}\n`);
+            }
+          })
+           
         }         
       })   
     }    
