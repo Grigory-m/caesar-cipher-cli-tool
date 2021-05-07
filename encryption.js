@@ -8,7 +8,7 @@ const encryption = (text, shift, action) => {
   const map = new Map(Object.entries(alphabet));
   let encryptedText = '';
   
-  [...text].forEach((char) => {
+  text.split('').forEach((char) => {
     const letter = char.toLowerCase();
     const code = char.codePointAt(0);
     const index = +map.get(letter);
