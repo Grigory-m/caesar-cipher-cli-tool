@@ -2,22 +2,18 @@ const fs = require('fs');
 const encryption = require('./encryption');
 
 const stream = (options) => {
-  const { shift, input, output, action } = options;
+  const { shift, input, output, action } = options;  
   process.stdin.setEncoding('utf8');
-    
+
   if (input && output) {
-    fs.open(input, 'r', (err) => {
-      if (err) {
-        process.stderr.write('Error: file doesn\'t exist or not accessible, please ensure that path is correct.\n');
-        process.exit(1);      
-      }      
-    })     
-    fs.open(output, 'r', (err) => {
-      if (err) {
-        process.stderr.write('Error: file doesn\'t exist or not accessible, please ensure that path is correct.\n');
-        process.exit(1);      
-      }      
-    })   
+    try {
+      fs.openSync(input, 'r');     
+      fs.openSync(output, 'r');  
+    } catch (error) {
+      process.stderr.write('Error: file doesn\'t exist or not accessible, please ensure that path is correct.\n');
+      process.exit(1);      
+    }
+        
     const readable = fs.createReadStream(input, { encoding: 'utf-8'});
     const writable = fs.createWriteStream(output, { flags: 'a'});
     readable.on('data', (chunk) => {

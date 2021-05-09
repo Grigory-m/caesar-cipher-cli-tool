@@ -4,7 +4,7 @@
   "description": "Caesar cipher",
   "main": "my_caesar_cli.js",
   "bin": {
-    "caesar_cipher": "./caesar.js"
+    "caesar_cipher": "./bin/caesar.js"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
