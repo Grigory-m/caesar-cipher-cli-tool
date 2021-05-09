@@ -1,6 +1,6 @@
 #!/usr/bin/env node
-const check = require('../js/check');
-const parseShift = require('../js/arguments');
+const check = require('./js/check');
+const parseShift = require('./js/arguments');
 const app = require('commander');
 
 app
